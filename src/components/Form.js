@@ -10,13 +10,12 @@ export const Form = () => {
 
     const submitHandler = event => {
         event.preventDefault()
-        firebase.addNote(value.trim())
-
         if (value.trim()) {
+            firebase.addNote(value.trim())
             alert.show('Note created successfully!', 'success')
             setValue('')
         } else {
-            alert.show('Enter notes, please.')
+            alert.show('Enter the note.')
         }
     }
 
