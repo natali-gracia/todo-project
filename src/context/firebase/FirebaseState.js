@@ -17,13 +17,14 @@ export const FirebaseState = ({ children }) => {
     const fetchNotes = async () => {
         showLoader()
         const res = await axios.get('https://todoapp-react-hooks.firebaseio.com/notes.json')
-
-        const payload = Object.keys(res.data).map( key => {
-            return {
-                ...res.data[key],
-                id: key
-            }
-        })
+        const payload = (
+            res.data === null ? [] : Object.keys(res.data).map( key => {
+                return {
+                    ...res.data[key],
+                    id: key
+                }
+            })
+        )
 
         dispatch({type: FETCH_NOTES, payload})
     }
